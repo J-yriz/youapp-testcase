@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('send-message')
+@Controller('sendMessage')
 export class SendMessageController {}

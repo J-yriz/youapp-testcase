@@ -1,4 +1,4 @@
 import { Controller } from '@nestjs/common';
 
-@Controller('update-profile')
+@Controller('updateProfile')
 export class UpdateProfileController {}
