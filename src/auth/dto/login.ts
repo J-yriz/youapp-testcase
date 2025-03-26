@@ -7,7 +7,7 @@ export class LoginDto {
   @MaxLength(16, { message: 'Username is too long!' })
   username: string;
 
-  @IsString()
+  @IsOptional()
   @IsEmail({}, { message: 'Invalid email!' })
   email: string;
 

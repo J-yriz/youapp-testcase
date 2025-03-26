@@ -1,6 +1,7 @@
 export enum Gender {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
+  Male = 'Male',
+  Female = 'Female',
+  None = '',
 }
 
 export enum Zodiac {
@@ -16,4 +17,5 @@ export enum Zodiac {
   Capricorn = 'Capricorn',
   Aquarius = 'Aquarius',
   Pisces = 'Pisces',
+  None = '',
 }

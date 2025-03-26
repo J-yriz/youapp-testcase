@@ -14,12 +14,16 @@ export class LoginController {
       ? new ResponseStructure({
           statusCode: 200,
           message: 'User logged in successfully',
-          data: {},
+          data: {
+            id: (getedUser._id as string).toString().slice(0, 5),
+            username: getedUser.username,
+            email: getedUser.email,
+          },
           error: null,
         })
       : new ResponseStructure({
           statusCode: 400,
-          message: 'User not found or password is incorrect',
+          message: 'Bad request',
           data: {},
           error: 'User not found or password is incorrect',
         });

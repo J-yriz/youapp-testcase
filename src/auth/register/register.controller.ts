@@ -15,12 +15,16 @@ export class RegisterController {
       ? new ResponseStructure({
           statusCode: HttpStatus.CREATED,
           message: 'User created successfully',
-          data: {},
+          data: {
+            id: (createdUser._id as string).toString().slice(0, 5),
+            username: createdUser.username,
+            email: createdUser.email,
+          },
           error: null,
         })
       : new ResponseStructure({
           statusCode: HttpStatus.BAD_REQUEST,
-          message: 'User already exists',
+          message: 'Bad request',
           data: {},
           error: 'User already exists',
         });
