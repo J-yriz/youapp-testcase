@@ -5,6 +5,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -12,37 +13,42 @@ import { Gender, Zodiac } from 'src/utility/types/profile';
 
 class AboutProfile {
   @IsString()
-  image: string;
+  @IsOptional()
+  image?: string;
 
   @IsEnum(Gender)
-  gender: Gender;
+  @IsOptional()
+  gender?: Gender;
 
   @IsDateString()
-  birthday: Date;
+  @IsOptional()
+  birthday?: Date;
 
   @IsString()
-  horoscope: string;
+  @IsOptional()
+  horoscope?: string;
 
   @IsEnum(Zodiac)
-  zodiac: Zodiac;
+  @IsOptional()
+  zodiac?: Zodiac;
 
   @IsNumber()
-  height: number;
+  @IsOptional()
+  height?: number;
 
   @IsNumber()
-  weight: number;
+  @IsOptional()
+  weight?: number;
 }
 
-export class CreateProfileDto {
-  @IsString({ message: 'id must be a string' })
-  @IsNotEmpty({ message: 'id is required' })
-  id: string;
-
+export class UpdateProfileDto {
+  @IsOptional()
   @ValidateNested()
   @Type(() => AboutProfile)
-  about: AboutProfile;
+  about?: AboutProfile;
 
   @IsArray()
+  @IsOptional()
   @IsString({ each: true })
-  interest: string[];
+  interest?: string[];
 }

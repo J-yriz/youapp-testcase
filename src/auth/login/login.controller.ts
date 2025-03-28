@@ -18,6 +18,7 @@ export class LoginController {
             id: (getedUser._id as string).toString().slice(0, 5),
             username: getedUser.username,
             email: getedUser.email,
+            profile: getedUser.profile,
           },
           error: null,
         })

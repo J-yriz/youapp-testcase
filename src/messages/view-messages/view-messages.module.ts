@@ -4,6 +4,6 @@ import { ViewMessagesController } from './view-messages.controller';
 
 @Module({
   providers: [ViewMessagesService],
-  controllers: [ViewMessagesController]
+  controllers: [ViewMessagesController],
 })
 export class ViewMessagesModule {}

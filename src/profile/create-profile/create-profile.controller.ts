@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { CreateProfileService } from './create-profile.service';
 import { CreateProfileDto } from '../dto/create-profile';
 import { ResponseStructure } from 'src/utility/class/reponseStructure';
@@ -20,8 +20,9 @@ export class CreateProfileController {
           message: 'Profile created successfully',
           data: {
             id: (createdProfile._id as string).toString().slice(0, 5),
-            about: createdProfile.profile.about,
-            interest: createdProfile.profile.interest,
+            username: createdProfile.username,
+            email: createdProfile.email,
+            profile: createdProfile.profile,
           },
           error: null,
         })

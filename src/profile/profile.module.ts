@@ -4,6 +4,6 @@ import { GetProfileModule } from './get-profile/get-profile.module';
 import { UpdateProfileModule } from './update-profile/update-profile.module';
 
 @Module({
-  imports: [CreateProfileModule, GetProfileModule, UpdateProfileModule]
+  imports: [CreateProfileModule, GetProfileModule, UpdateProfileModule],
 })
 export class ProfileModule {}
