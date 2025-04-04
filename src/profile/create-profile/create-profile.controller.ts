@@ -2,10 +2,14 @@ import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/commo
 import { CreateProfileService } from './create-profile.service';
 import { CreateProfileDto } from '../dto/create-profile';
 import { ResponseStructure } from 'src/utility/class/reponseStructure';
+import { AppService } from 'src/app.service';
 
 @Controller('createProfile')
 export class CreateProfileController {
-  constructor(private readonly createProfileService: CreateProfileService) {}
+  constructor(
+    private readonly createProfileService: CreateProfileService,
+    private readonly appService: AppService,
+  ) {}
 
   @Post()
   async createProfile(@Body() createProfileDto: CreateProfileDto) {
@@ -19,7 +23,7 @@ export class CreateProfileController {
           statusCode: HttpStatus.CREATED,
           message: 'Profile created successfully',
           data: {
-            id: (createdProfile._id as string).toString().slice(0, 5),
+            id: this.appService.sliceWord((createdProfile._id as string).toString(), 0, 5),
             username: createdProfile.username,
             email: createdProfile.email,
             profile: createdProfile.profile,

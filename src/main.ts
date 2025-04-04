@@ -9,7 +9,9 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3000).catch((err) => {
+    console.error('Error starting the server:', err);
+  });
 }
 
-(async() => await bootstrap())();
+void (async () => await bootstrap())();

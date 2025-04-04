@@ -5,31 +5,35 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
+  Matches,
   ValidateNested,
 } from 'class-validator';
-import { Gender, Zodiac } from 'src/utility/types/profile';
+import { Gender } from 'src/utility/types/profile';
 
 class AboutProfile {
   @IsString()
+  @IsNotEmpty()
   image: string;
 
   @IsEnum(Gender)
+  @IsNotEmpty()
   gender: Gender;
 
   @IsDateString()
-  birthday: Date;
-
-  @IsString()
-  horoscope: string;
-
-  @IsEnum(Zodiac)
-  zodiac: Zodiac;
+  @IsNotEmpty()
+  @Matches(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/, {
+    message: 'birthday must be in format YYYY-MM-DDTHH:mm:ss.sssZ\nExample: 2021-08-01T00:00:00.000Z',
+  })
+  birthday: string;
 
   @IsNumber()
+  @IsNotEmpty()
   height: number;
 
   @IsNumber()
+  @IsNotEmpty()
   weight: number;
 }
 
@@ -40,9 +44,11 @@ export class CreateProfileDto {
 
   @ValidateNested()
   @Type(() => AboutProfile)
+  @IsOptional()
   about: AboutProfile;
 
   @IsArray()
   @IsString({ each: true })
+  @IsOptional()
   interest: string[];
 }

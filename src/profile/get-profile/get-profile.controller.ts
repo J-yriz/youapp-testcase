@@ -1,10 +1,14 @@
 import { Controller, Get, HttpException, HttpStatus, Param } from '@nestjs/common';
 import { GetProfileService } from './get-profile.service';
 import { ResponseStructure } from 'src/utility/class/reponseStructure';
+import { AppService } from 'src/app.service';
 
 @Controller('getProfile')
 export class GetProfileController {
-  constructor(private readonly getProfileService: GetProfileService) {}
+  constructor(
+    private readonly getProfileService: GetProfileService,
+    private readonly appService: AppService,
+  ) {}
 
   @Get()
   async getAllProfiles() {
@@ -15,10 +19,10 @@ export class GetProfileController {
         statusCode: HttpStatus.OK,
         message: 'All profiles fetched successfully',
         data: userDatas.map((userData) => ({
-          id: (userData?._id as string).toString().slice(0, 5),
+          id: this.appService.sliceWord((userData?._id as string).toString(), 0, 5),
           username: userData?.username,
           email: userData?.email,
-          detail: `/api/getProfile/${(userData?._id as string).toString().slice(0, 5)}`,
+          detail: `/api/getProfile/${this.appService.sliceWord((userData?._id as string).toString(), 0, 5)}`,
         })),
         error: null,
       },
@@ -35,7 +39,7 @@ export class GetProfileController {
           statusCode: HttpStatus.OK,
           message: 'Profile fetched successfully',
           data: {
-            id: (userData._id as string).toString().slice(0, 5),
+            id: this.appService.sliceWord((userData._id as string).toString(), 0, 5),
             username: userData.username,
             email: userData.email,
             profile: userData.profile,

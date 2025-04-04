@@ -1,5 +1,5 @@
 import { Schema, Document } from 'mongoose';
-import { Profile, ProfileSchema } from 'src/profile/profile.schema';
+import { IProfile, ProfileSchema } from 'src/profile/profile.schema';
 
 export const AuthSchema = new Schema(
   {
@@ -11,9 +11,9 @@ export const AuthSchema = new Schema(
   { timestamps: true },
 );
 
-export interface Auth extends Document {
+export interface IAuth extends Document {
   username: string;
   email: string;
   password: string;
-  profile: Profile;
+  profile: IProfile;
 }

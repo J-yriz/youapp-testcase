@@ -1,34 +1,36 @@
-// profile.schema.ts
 import { Schema, Document } from 'mongoose';
-import { Gender, Zodiac } from 'src/utility/types/profile';
+import { Gender, Horoscope, Zodiac } from 'src/utility/types/profile';
 
 export const ProfileSchema = new Schema(
   {
     about: {
-      image: { type: String, required: false },
-      gender: { type: String, enum: Object.values(Gender), required: false },
-      birthday: { type: Date, required: false },
-      horoscope: { type: String, required: false },
-      zodiac: { type: String, enum: Object.values(Zodiac), required: false },
-      height: { type: Number, required: false },
-      weight: { type: Number, required: false },
+      image: { type: String, required: true },
+      gender: { type: String, enum: Object.values(Gender), required: true },
+      birthday: { type: Date, required: true },
+      horoscope: { type: String, enum: Object.values(Horoscope), required: true },
+      zodiac: { type: String, enum: Object.values(Zodiac), required: true },
+      height: { type: Number, required: true },
+      weight: { type: Number, required: true },
     },
     interest: { type: [String], required: false },
   },
   { _id: false },
 );
 
-export interface ProfileData {
+export interface IProfileData {
   about?: {
-    image?: string;
-    gender?: Gender;
-    birthday?: Date;
-    horoscope?: string;
-    zodiac?: Zodiac;
-    height?: number;
-    weight?: number;
+    image: string;
+    gender: Gender;
+    birthday: string;
+    height: number;
+    weight: number;
   };
   interest?: string[];
 }
 
-export interface Profile extends Document, ProfileData {}
+interface IZodiacProfile {
+  horoscope: Horoscope;
+  zodiac: Zodiac;
+}
+
+export interface IProfile extends Document, IProfileData, IZodiacProfile {}

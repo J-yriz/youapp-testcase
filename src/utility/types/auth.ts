@@ -1,3 +1,3 @@
-import { Auth } from 'src/auth/auth.schema';
+import { IAuth } from 'src/auth/auth.schema';
 
-export type ReturnDataAuth = Auth | null;
+export type ReturnDataAuth = IAuth | null;

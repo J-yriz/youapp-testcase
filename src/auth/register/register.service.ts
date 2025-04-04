@@ -1,13 +1,13 @@
 import * as bcrypt from 'bcrypt';
 import { Model } from 'mongoose';
-import { Auth } from '../auth.schema';
+import { IAuth } from '../auth.schema';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ReturnDataAuth } from 'src/utility/types/auth';
 
 @Injectable()
 export class RegisterService {
-  constructor(@InjectModel('Auth') private authModel: Model<Auth>) {}
+  constructor(@InjectModel('Auth') private authModel: Model<IAuth>) {}
 
   async createUser({
     username,

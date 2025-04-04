@@ -2,10 +2,14 @@ import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/commo
 import { RegisterService } from './register.service';
 import { RegisterDto } from '../dto/register';
 import { ResponseStructure } from 'src/utility/class/reponseStructure';
+import { AppService } from 'src/app.service';
 
 @Controller('register')
 export class RegisterController {
-  constructor(private readonly registerService: RegisterService) {}
+  constructor(
+    private readonly registerService: RegisterService,
+    private readonly appService: AppService,
+  ) {}
 
   @Post()
   async registerUser(@Body() registerDto: RegisterDto) {
@@ -16,7 +20,7 @@ export class RegisterController {
           statusCode: HttpStatus.CREATED,
           message: 'User created successfully',
           data: {
-            id: (createdUser._id as string).toString().slice(0, 5),
+            id: this.appService.sliceWord((createdUser._id as string).toString(), 0, 5),
             username: createdUser.username,
             email: createdUser.email,
           },

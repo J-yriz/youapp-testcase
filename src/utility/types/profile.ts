@@ -1,10 +1,25 @@
 export enum Gender {
   Male = 'Male',
   Female = 'Female',
-  None = '',
 }
 
 export enum Zodiac {
+  Rat = 'Rat',
+  Ox = 'Ox',
+  Tiger = 'Tiger',
+  Rabit = 'Rabbit',
+  Dragon = 'Dragon',
+  Snake = 'Snake',
+  Horse = 'Horse',
+  Goat = 'Goat',
+  Monkey = 'Monkey',
+  Rooster = 'Rooster',
+  Dog = 'Dog',
+  Pig = 'Pig',
+  None = '',
+}
+
+export enum Horoscope {
   Aries = 'Aries',
   Taurus = 'Taurus',
   Gemini = 'Gemini',
