@@ -3,7 +3,7 @@ import { IsEmail, IsString, IsNotEmpty, MinLength, MaxLength } from 'class-valid
 export class RegisterDto {
   @IsString()
   @MinLength(4, { message: 'Username is too short!' })
-  @MaxLength(16, { message: 'Username is too long!' })
+  @MaxLength(12, { message: 'Username is too long!' })
   username: string;
 
   @IsEmail({}, { message: 'Invalid email!' })

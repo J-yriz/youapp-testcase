@@ -4,7 +4,7 @@ export class LoginDto {
   @IsString()
   @IsOptional()
   @MinLength(4, { message: 'Username is too short!' })
-  @MaxLength(16, { message: 'Username is too long!' })
+  @MaxLength(12, { message: 'Username is too long!' })
   username: string;
 
   @IsOptional()

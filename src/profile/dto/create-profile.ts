@@ -8,11 +8,19 @@ import {
   IsOptional,
   IsString,
   Matches,
+  MaxLength,
+  MinLength,
   ValidateNested,
 } from 'class-validator';
 import { Gender } from 'src/utility/types/profile';
 
 class AboutProfile {
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(4, { message: 'displayName is too short!' })
+  @MaxLength(16, { message: 'displayName is too long!' })
+  displayName: string;
+
   @IsString()
   @IsNotEmpty()
   image: string;

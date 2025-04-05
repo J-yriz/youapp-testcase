@@ -4,6 +4,7 @@ import { Gender, Horoscope, Zodiac } from 'src/utility/types/profile';
 export const ProfileSchema = new Schema(
   {
     about: {
+      displayName: { type: String, required: false },
       image: { type: String, required: true },
       gender: { type: String, enum: Object.values(Gender), required: true },
       birthday: { type: Date, required: true },
@@ -19,6 +20,7 @@ export const ProfileSchema = new Schema(
 
 export interface IProfileData {
   about?: {
+    displayName?: string;
     image: string;
     gender: Gender;
     birthday: string;
